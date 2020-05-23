@@ -1,0 +1,80 @@
+{% extends 'menu.html' %}
+{% load static %}
+{% block common %}
+    <!doctype html>
+    <html lang="en">
+  <head>
+      <style type="text/css">
+          input[type=text],input[type=email], textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+      </style>
+    </head>
+  <body>
+  <table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">
+          {% for x in messages %}
+          <table align="center">
+          <tr>
+              <th style="background-color: white;color: black;text-align: center">
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      {{ x }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                  </div>
+              </th>
+          </tr>
+        </table>
+        {% endfor %}
+        <form action="{% url 'contact_save' %}" method="post">
+            {% csrf_token %}
+        <div class="table" style="margin-left: 500px;width: 500px;background-color: white">
+            <label for="subject" style="margin-left: 2%;color: darkslateblue;font-size: 18px">Name<small style="color: red;font-size: 20px">*</small></label>
+            <input type="text"  name="un" required >
+            <label for="email" style="margin-left: 2%;color: darkslateblue;font-size: 18px">Email<small style="color: red;font-size: 20px">*</small></label>
+            <input type="email"  name="un" required >
+            <label for="subject" style="margin-left: 2%;color: darkslateblue;font-size: 18px">Subject<small style="color: red;font-size: 20px">*</small></label>
+            <textarea  name="subject" required placeholder="Write something.." style="height:200px"></textarea>
+
+            <input type="submit" value="Submit" style="text-align: center;width: 150px;margin-left: 35%">
+
+        </div>
+        </form>
+      </th>
+    </tr>
+  </thead>
+</table>
+
+
+
+    </body>
+</html>
+
+{% endblock %}
