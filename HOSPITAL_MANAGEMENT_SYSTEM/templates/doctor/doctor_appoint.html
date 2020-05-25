@@ -1,0 +1,28 @@
+{% extends 'doctor/doctor_menu.html' %}
+{% load static %}
+{% block doctorcommon %}
+    <br><br>
+    {% if request.session.username %}
+      <table class="table">
+                    <thead>
+                        <tr style="background-color: LightGray">
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Patient Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for x in data %}
+                        <tr>
+                            <th scope="col">{{ x.date }}</th>
+                            <th scope="col">{{ x.time }}</th>
+                            <th scope="col">{{ x.patient }}</th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+    {% else %}
+  {% include 'alert.html' %}
+{% endif %}
+
+{% endblock %}

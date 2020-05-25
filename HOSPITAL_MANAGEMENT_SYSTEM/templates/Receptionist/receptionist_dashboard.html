@@ -1,0 +1,110 @@
+{% extends 'Receptionist/receptionist_menu.html' %}
+{% load static %}
+{% block receptionistcommon %}
+    {% if request.session.username %}<br>
+        <table width="100%" cellpadding="10%" cellspacing="10%">
+            <tr>
+                <th>
+                    <div class="alert alert-success" role="alert" style="text-align: center;background-color: #FFD700">
+                        <h4 class="alert-heading">Total Appointments</h4>
+                        <h4>{{ ta }}</h4>
+                    </div>
+                </th>
+                <th>
+                    <div class="alert alert-success" role="alert" style="text-align: center;background-color: #20B2AA">
+                        <h4 class="alert-heading">Appointments done</h4>
+                        <h4>{{ ad }}</h4>
+                    </div>
+                </th>
+                <th>
+                    <div class="alert alert-success" role="alert" style="text-align: center;background-color: #6495ED">
+                        <h4 class="alert-heading">Upcoming Appointments</h4>
+                        <h4>{{ ua }}</h4>
+                    </div>
+                </th>
+            </tr>
+        </table>
+        <table width="100%" cellpadding="10%" cellspacing="10%">
+            <tr>
+                <th>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="5">
+                                <form action="{% url 'create_appointment' %}" method="get">
+                                <button style="width: 100%" type="submit" class="btn btn-primary">Create Appointments</button>
+                                </form>
+                            </th>
+                        </tr>
+                        <tr style="background-color: LightGray">
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Doctor</th>
+                            <th scope="col">Patient</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for x in data %}
+                        <tr>
+                            <th scope="col">{{ x.date }}</th>
+                            <th scope="col">{{ x.time }}</th>
+                            <th scope="col">{{ x.doctor }}</th>
+                            <th scope="col">{{ x.patient }}</th>
+                            <th scope="col">{{ x.status }}</th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="7">
+                                <button style="width: 100%" type="submit" class="btn btn-primary">Patients Details</button>
+                            </th>
+                        </tr>
+                        <tr style="background-color: LightGray">
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for x in data1 %}
+                        <tr>
+                            <td scope="col">{{ x.name }}</td>
+                            <td scope="col">{{ x.mobile }}</td>
+                            <td scope="col">{{ x.email }}</td>
+                            <td scope="col">{{ x.gender }}</td>
+                            <td scope="col">{{ x.age }}</td>
+                            <td scope="col">
+                            <form action="{% url 'update_pt' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ x.id }}" name="id">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                            </td>
+                            <td scope="col">
+                                <a href="{% url 'del_pt' %}?x={{ x.id }}">
+                                <img src="{% static 'images/delete (1).png' %}" width="30px" height="30px">
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </th>
+            </tr>
+        </table>
+    {% else %}
+        {% include 'alert.html' %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'doctor/doctor_menu.html' %}
+{% load static %}
+{% block doctorcommon %}
+    <br><br>
+    {% if request.session.username %}
+      <div style="padding-left: 32%;padding-right: 33%;">
+    <form action="{% url 'doctor_profile' %}" method="post">
+      {% csrf_token %}
+    <table class="table" style="background-color: white">
+       <tr>
+            <th width="180">{{ form.username.label }} <small style="color: red;font-size: 20px">*</small></th>
+            <th width="100"><input type="text" readonly value="{{ request.session.username }}" name="username"></th>
+       </tr>
+        <tr>
+            <th width="180">{{ form.name.label }} <small style="color: red;font-size: 20px">*</small></th>
+            <th width="100">{{ form.name }}</th>
+       </tr>
+        <tr>
+            <th width="180">{{ form.mobile.label }} <small style="color: red;font-size: 20px">*</small></th>
+            <th width="100">{{ form.mobile }}</th>
+       </tr>
+        <tr>
+            <th width="180">{{ form.email.label }} <small style="color: red;font-size: 20px">*</small></th>
+            <th width="100">{{ form.email }}</th>
+       </tr>
+       <tr>
+            <th width="180">{{ form.gender.label }} <small style="color: red;font-size: 20px">*</small></th>
+            <th width="100">{{ form.gender }}</th>
+       </tr>
+       <tr>
+            <th width="180">{{ form.age.label }} <small style="color: red;font-size: 20px">*</small></th>
+            <th width="100">{{ form.age }}</th>
+       </tr>
+       <tr>
+            <th width="180">{{ form.status.label }} <small style="color: red;font-size: 20px">*</small></th>
+            <th width="100">{{ form.status }}</th>
+       </tr>
+       <tr>
+            <th width="180">{{ form.department.label }} <small style="color: red;font-size: 20px">*</small></th>
+            <th width="100">{{ form.department }}</th>
+       </tr>
+       <tr>
+          <th style="text-align: center;padding-left: 60px" colspan="2">
+          <button type="submit" class="btn btn-outline-success my-2 my-sm-0" style="width: 200px">Save</button>
+          </th>
+      </tr>
+      {% for x in messages %}
+      <tr>
+              <th style="background-color: white;color: black;text-align: center" colspan="2">
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      {{ x }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                  </div>
+              </th>
+      </tr>
+    {% endfor %}
+  </table>
+  </form>
+    </div>
+    {% else %}
+  {% include 'alert.html' %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'patient/patient_menu.html' %}
+{% load static %}
+{% block patientcommon %}
+    <br><br>
+    {% if request.session.username %}
+      {% for x in data %}
+          <div class="row" style="margin-left: 10%;">
+              <div class="col-sm-6" style="background-color: lightgreen">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Symtems : {{ x.disease }}</h5>
+                            <p class="card-text">Recemond : {{ x.prescription }}</p>
+                            <p>Prescription : in the case of a high fever ,or a low fever that's causing discomfort .
+                            Your doctor may recommend an over-the-counter medication such as
+                            acetaminophen(Tyelenol others) or ibuprofen(Advil, Motrin lB others). </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+              </div>
+          </div>
+      {% endfor %}
+    {% else %}
+  {% include 'alert.html' %}
+{% endif %}
+
+{% endblock %}

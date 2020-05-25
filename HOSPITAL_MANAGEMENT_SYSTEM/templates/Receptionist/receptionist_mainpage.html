@@ -1,0 +1,123 @@
+{% extends 'Receptionist/receptionist_menu.html' %}
+{% load static %}
+{% block receptionistcommon %}
+    {% if request.session.username %}
+        <br><br><br><br>
+    <table align="center" width="1200px" cellspacing="50px" cellpadding="50px">
+        <tr>
+            <td>
+                <img src="{% static 'images/7.jpg' %}" width="400px" height="400px">
+            </td>
+            <td>
+                <table >
+                    <tr>
+                        <td style="font-family: 'Times New Roman';font-size: 15px">
+                            Welcome to DOCMED
+                            <hr style="height: 2px;background-color: deepskyblue;width: 140px;margin-left: initial;margin-top: initial">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: 'Calibri';font-size: 30px;color: deepskyblue">
+                            Best Care For Your Good Health</td>
+                    </tr><tr style="height: 10px"></tr>
+                    <tr>
+                        <td style="font-family: 'Times New Roman'">
+                            Esteem spirit temper too say adieus who direct esteem. It esteems luckily or picture placing drawing.
+                            Apartments frequently or motionless on reasonable projecting expression.
+                        </td>
+                    </tr><tr style="height: 20px"></tr>
+                    <tr style="font-family: 'Times New Roman'">
+                        <td>
+                        <ul>
+                            <li>Apartments frequently or motionless.</li>
+                            <li>Duis aute irure dolor in reprehenderit in voluptate.</li>
+                            <li>Valuptatem quia voluptas sit aspematur.</li>
+                        </ul>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br><br><br><br>
+    <table align="center" cellspacing="30px" cellpadding="20px">
+        <tr>
+            <td colspan="3"style="text-align: center;font-family: 'Times New Roman';font-size: 30px">
+                Our Departments<hr style="height: 2px;background-color: deepskyblue;margin-top: initial">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center">
+                Esteem spirit temper too say adieus who direct esteem<br>
+                It esteems luckily or picture placing drwaing.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'images/eye care.jpg' %}" width="300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Eye Care</h5>
+                            <p class="card-text">
+                               Esteem spirit temper too say audieus who direct esteem.</p>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'images/download.jpg' %}" width="300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Pysical Therapy</h5>
+                            <p class="card-text">
+                               Esteem spirit temper too say audieus who direct esteem.</p>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'images/download (1).jpg' %}" width="300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Dental Care</h5>
+                            <p class="card-text">
+                               Esteem spirit temper too say audieus who direct esteem.</p>
+                        </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'images/shutterstock_327930536-760x475@2x.jpg' %}" width="300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Daignostic Test</h5>
+                            <p class="card-text">
+                              Esteem spirit temper too say audieus who direct esteem.</p>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'images/skin.jpg' %}" width="300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Skin Surgery</h5>
+                            <p class="card-text">
+                              Esteem spirit temper too say audieus who direct esteem.</p>
+                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'images/kmi_slider2.jpg' %}" width="300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Surgery Survices</h5>
+                            <p class="card-text">
+                               Esteem spirit temper too say audieus who direct esteem.</p>
+                        </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+{% else %}
+  {% include 'alert.html' %}
+{% endif %}
+{% endblock %}

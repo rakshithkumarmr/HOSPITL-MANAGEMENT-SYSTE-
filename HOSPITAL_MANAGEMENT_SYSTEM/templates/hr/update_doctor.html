@@ -1,0 +1,68 @@
+{% extends 'hr/hr_menu.html' %}
+{% load static %}
+{% block hrcommon %}
+    {% if request.session.username %}<br>
+        <div style="padding-left: 32%;padding-right: 33%;">
+    <form action="{% url 'd_update' %}" method="post">
+      {% csrf_token %}
+    <table class="table" style="background-color: white">
+        <input type="hidden" value="{{ data.id }}" name="id">
+       <tr>
+            <th width="180">Username</th>
+            <th width="100"><input type="text" readonly value="{{ data.username }}" name="username"></th>
+       </tr>
+        <tr>
+            <th width="180">Name</th>
+            <th width="100"><input type="text" value="{{ data.name }}" name="name"></th>
+       </tr>
+        <tr>
+            <th width="180">Phone</th>
+            <th width="100"><input type="number" value="{{ data.mobile }}" name="mobile"></th>
+       </tr>
+        <tr>
+            <th width="180">Email</th>
+            <th width="100"><input type="email" value="{{ data.email }}" name="email"></th>
+       </tr>
+       <tr>
+            <th width="180">Gender</th>
+            <th width="100"><input type="text" readonly value="{{ data.gender }}" name="gender"></th>
+       </tr>
+       <tr>
+            <th width="180">Age</th>
+            <th width="100"><input type="number" value="{{ data.age }}" name="age"></th>
+       </tr>
+       <tr>
+            <th width="180">Department</th>
+            <th width="100"><input type="text" value="{{ data.department}}" name="dpt"></th>
+       </tr>
+       <tr>
+            <th width="180">Attendence</th>
+            <th width="100"><input type="number"  value="{{ data.attendence }}" name="att"></th>
+       </tr>
+       <tr>
+            <th width="180">Salary</th>
+            <th width="100"><input type="decimal" value="{{ data.sallary }}" name="salary"></th>
+       </tr>
+       <tr>
+            <th width="180">Status</th>
+            <th width="100">
+                <select name="status" id="cars">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                </select>
+            </th>
+       </tr>
+        <tr>
+          <th style="text-align: center;padding-left: 60px" colspan="2">
+          <button type="submit" class="btn btn-outline-success my-2 my-sm-0" style="width: 200px">Save</button>
+          </th>
+      </tr>
+     </table>
+  </form>
+    </div>
+
+
+    {% else %}
+        {% include 'alert.html' %}
+    {% endif %}
+{% endblock %}

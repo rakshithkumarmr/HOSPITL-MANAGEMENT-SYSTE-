@@ -1,0 +1,29 @@
+{% extends 'Receptionist/receptionist_menu.html' %}
+{% load static %}
+{% block receptionistcommon %}
+    <br><br>
+    {% if request.session.username %}
+      <form action="{% url 'create_appointment' %}" method="post">
+      {% csrf_token %}
+        <table class="table table-bordered">
+       <thead>
+       <tr>
+           {{ form.as_p }}
+       </tr>
+
+    <tr>
+      <th scope="col">
+
+          <button type="submit" class="btn btn-primary" >Submit</button>
+
+      </th>
+    </tr>
+
+  </thead>
+</table>
+        </form>
+    {% else %}
+  {% include 'alert.html' %}
+{% endif %}
+
+{% endblock %}

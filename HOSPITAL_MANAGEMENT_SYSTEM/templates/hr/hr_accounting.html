@@ -1,0 +1,41 @@
+{% extends 'hr/hr_menu.html' %}
+{% load static %}
+{% block hrcommon %}
+    {% if request.session.username %}<br>
+        <table width="100%" cellpadding="10%" cellspacing="10%">
+            <tr>
+                <th>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <form action="{% url 'create_outstanding' %}" method="get">
+                                <button style="width: 100%" type="submit" class="btn btn-primary">Create Outstanding </button>
+                            </form>
+                            </th>
+                        </tr>
+                        <tr style="background-color: LightGray">
+                            <th scope="col">Date</th>
+                            <th scope="col">Petient Name</th>
+                            <th scope="col">Paid</th>
+                            <th scope="col">Outstanding</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for x in data %}
+                        <tr>
+                            <th scope="col">{{ x.date }}</th>
+                            <th scope="col">{{ x.patient_name }}</th>
+                            <th scope="col">{{ x.paid }}</th>
+                            <th scope="col">{{ x.outstanding }}</th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </th>
+            </tr>
+        </table>
+    {% else %}
+        {% include 'alert.html' %}
+    {% endif %}
+{% endblock %}

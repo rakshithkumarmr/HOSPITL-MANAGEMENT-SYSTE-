@@ -1,6 +1,7 @@
-{% extends 'menu.html' %}
+{% extends 'hr/hr_menu.html' %}
 {% load static %}
-{% block common %}
+{% block hrcommon %}
+    {% if request.session.username %}
     <!doctype html>
     <html lang="en">
   <head>
@@ -53,7 +54,7 @@ input[type=submit]:hover {
           </tr>
         </table>
         {% endfor %}
-        <form action="{% url 'contact_save' %}" method="post">
+        <form action="{% url 'hr_contact_save' %}" method="post">
             {% csrf_token %}
         <div class="table" style="margin-left: 25%;width: 50%;background-color: white">
             <label for="subject" style="margin-left: 2%;color: #505050;font-size: 14px">Name<small style="color: red;font-size: 20px">*</small></label>
@@ -76,5 +77,7 @@ input[type=submit]:hover {
 
     </body>
 </html>
-
+{% else %}
+  {% include 'alert.html' %}
+{% endif %}
 {% endblock %}

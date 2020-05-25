@@ -1,0 +1,44 @@
+{% extends 'doctor/doctor_menu.html' %}
+{% load static %}
+{% block doctorcommon %}
+    <br><br>
+    {% if request.session.username %}
+      <form action="{% url 'add_doctor_prescription' %}" method="post">
+      {% csrf_token %}
+        <table class="table table-bordered">
+       <thead>
+       <tr>
+           {{ form.as_p }}
+       </tr>
+
+    <tr>
+      <th scope="col">
+
+          <button type="submit" class="btn btn-primary" >Submit</button>
+
+      </th>
+    </tr>
+       <tr>
+           {% for x in messages %}
+          <table align="center">
+          <tr>
+              <th style="background-color: white;color: black;text-align: center">
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      {{ x }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                  </div>
+              </th>
+          </tr>
+        </table>
+        {% endfor %}
+       </tr>
+  </thead>
+</table>
+        </form>
+    {% else %}
+  {% include 'alert.html' %}
+{% endif %}
+
+{% endblock %}

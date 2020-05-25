@@ -1,0 +1,50 @@
+{% extends 'menu.html' %}
+{% load static %}
+{% block common %}
+    {% load static %}<br><br>
+    <table>
+       <form action="{% url 'login_check' %}" method="post">
+           {% csrf_token %}
+               <div style="height: 50%;width:50%;align-items: center;">
+           <table align="center" width="40%" style=" height: 40%;" border="0">
+
+           <tr><th>
+           <div class="form-group">
+               <label for="exampleInputEmail1" style="font-size: 50px;color: cornflowerblue;font-size: 40px;font-family:Georgia" >User Login</label>
+               <label style="width: 20px"></label>
+               <img src="{% static 'images/login.png' %}" width="60" height="60">
+           </div>
+           <div class="form-group">
+                <label for="exampleInputUsername" style="color: #505050">Username</label>
+                <input type="text" class="form-control" id="exampleInputUsername" required name="username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" style="color: #505050">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" required name="password" minlength="8">
+                <small id="emailHelp" class="form-text text-muted">** Password must contain 8 or more than 8 Character's</small>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 200px;">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;
+               <a href="#">Forget password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>   <a href="{% url 'register' %}">New User?</a></label>
+            </th></tr>
+            <tr style="height: 30px"></tr>
+               <tr>
+                <th style="margin-left: 50%;width: 100px">
+                    {% for x in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>{{ x }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                    {% endfor %}
+                </th>
+           </tr>
+            </table>
+               </div></form>
+       </table>
+
+
+
+{% endblock %}
+
